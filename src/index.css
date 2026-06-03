@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.marquee-container {
+    overflow: hidden;
+    white-space: nowrap;
+}
+.marquee-content {
+    display: inline-flex;
+    animation: marquee 40s linear infinite;
+}
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.marquee-content-reverse {
+    display: inline-flex;
+    animation: marquee-reverse 40s linear infinite;
+}
+@keyframes marquee-reverse {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+}
+
+.brutal-card-hover {
+    transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
+}
+.brutal-card-hover:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 10px 10px 0px 0px #000000;
+    z-index: 10;
+}
+
+.text-outline-orange {
+    color: transparent;
+    -webkit-text-stroke: 6px #FF6B00;
+}
+@media (max-width: 768px) {
+    .text-outline-orange {
+        -webkit-text-stroke: 3px #FF6B00;
+    }
+}
+
+/* Typewriter Animation */
+.typewriter {
+    overflow: hidden;
+    border-right: .15em solid #FF6B00;
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: .05em;
+    animation: 
+      typing 3.5s steps(40, end),
+      blink-caret .75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #FF6B00; }
+}
