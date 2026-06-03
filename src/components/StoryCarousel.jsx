@@ -13,8 +13,8 @@ const stories = [
     id: 2,
     title: '02 / INICIAR SESIÓN',
     story: '"Como estudiante registrado, quiero iniciar sesión para acceder a mi perfil y a los apuntes disponibles."',
-    badge: '[ DIFICULTAD: BLOQUEANTE ]',
-    badgeColor: 'bg-[#000000] text-white border-[2px] border-black',
+    badge: '[ DIFICULTAD: MODERADA ]',
+    badgeColor: 'bg-[#F3F3F3] text-black border-[2px] border-black',
     justification: 'Requiere un formulario para ingresar datos, validar que el usuario exista y guardar la información de sesión en la base de datos local. La lógica es directa, pero actúa como un control de acceso crítico para el resto de los módulos.',
   },
   {
