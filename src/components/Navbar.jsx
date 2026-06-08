@@ -3,9 +3,26 @@ import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const location = useLocation();
   const isTargetPage = location.pathname === '/' || location.pathname === '/specs';
   const [navVisible, setNavVisible] = useState(!isTargetPage);
+  
+  const isLoggedIn = !!localStorage.getItem('token');
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    window.location.href = '/';
+  };
+
+  useEffect(() => {
+    // Si estamos en dashboard o upload, esperamos 1.5s para que terminen las animaciones.
+    // Si no, aparece de inmediato.
+    const delay = (location.pathname === '/dashboard' || location.pathname === '/upload') ? 1500 : 0;
+    setMounted(false);
+    const timer = setTimeout(() => setMounted(true), delay);
+    return () => clearTimeout(timer);
+  }, [location.pathname]);
 
   useEffect(() => {
     if (isTargetPage) {
@@ -34,11 +51,13 @@ const Navbar = () => {
     return null;
   }
 
-  const bgClass = scrolled 
+  const isDarkPage = location.pathname === '/dashboard' || location.pathname === '/upload';
+
+  const bgClass = (scrolled || isDarkPage)
     ? 'bg-black/80 backdrop-blur-md border-b-[1px] border-white/10' 
     : 'bg-transparent';
     
-  const visibilityClass = navVisible 
+  const visibilityClass = (navVisible && mounted)
     ? 'translate-y-0 opacity-100 pointer-events-auto' 
     : '-translate-y-full opacity-0 pointer-events-none';
 
@@ -65,10 +84,32 @@ const Navbar = () => {
         >
           ESPECIFICACIONES
         </Link>
-        <Link to="/login" className="flex items-center justify-center gap-2 bg-primary-container text-white font-headline-sm text-headline-sm uppercase px-8 py-3 rounded-full hover:opacity-90 hover:shadow-brutal-hover hover:-translate-y-1 hover:-translate-x-1 transition-all border-[3px] border-transparent">
-          <span className="material-symbols-outlined text-[24px]">login</span>
-          INICIAR SESIÓN
-        </Link>
+        
+        {isLoggedIn ? (
+          <>
+            <Link
+              to="/dashboard"
+              className={`font-headline-sm text-headline-sm uppercase transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 ${location.pathname === '/dashboard' ? 'text-[#FF6B00]' : 'text-white hover:text-primary-container'}`}
+            >
+              DASHBOARD
+            </Link>
+            <Link
+              to="/upload"
+              className={`font-headline-sm text-headline-sm uppercase transition-all duration-200 hover:-translate-y-1 hover:-translate-x-1 ${location.pathname === '/upload' ? 'text-[#FF6B00]' : 'text-white hover:text-primary-container'}`}
+            >
+              SUBIR APUNTE
+            </Link>
+            <button onClick={handleLogout} className="flex items-center justify-center gap-2 bg-transparent text-white font-headline-sm text-headline-sm uppercase px-8 py-3 rounded-full hover:opacity-90 hover:shadow-brutal-hover hover:-translate-y-1 hover:-translate-x-1 transition-all border-[3px] border-white hover:border-[#FF6B00] hover:text-[#FF6B00]">
+              <span className="material-symbols-outlined text-[24px]">logout</span>
+              CERRAR SESIÓN
+            </button>
+          </>
+        ) : (
+          <Link to="/login" className="flex items-center justify-center gap-2 bg-primary-container text-white font-headline-sm text-headline-sm uppercase px-8 py-3 rounded-full hover:opacity-90 hover:shadow-brutal-hover hover:-translate-y-1 hover:-translate-x-1 transition-all border-[3px] border-transparent">
+            <span className="material-symbols-outlined text-[24px]">login</span>
+            INICIAR SESIÓN
+          </Link>
+        )}
       </div>
       
       {/* Mobile Menu Icon (Hidden on desktop) */}
