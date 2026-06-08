@@ -1,12 +1,16 @@
-# U-Notes // Frontend UI
+<div align="center">
+  <img src="public/IMG/U-NOTES%20LOGO%20Orange.svg" alt="U-Notes Logo" width="200" style="margin-bottom: 20px;" />
 
-![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![GSAP](https://img.shields.io/badge/GSAP-88CE02?style=for-the-badge&logo=greensock&logoColor=white)
-![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
+  # U-Notes // Frontend UI
 
-Technical documentation for the **U-Notes Frontend Repository**. This is an SPA (Single Page Application) built with React and Vite, serving as the client-side interface for the U-Notes platform.
+  ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+  ![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)
+  ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+  ![GSAP](https://img.shields.io/badge/GSAP-88CE02?style=for-the-badge&logo=greensock&logoColor=white)
+  ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
+</div>
+
+Welcome to the frontend repository for **U-Notes**, a brutalist-inspired web platform designed to help university students share, download, and index study materials (PDFs).
 
 ## Tech Stack & Dependencies
 - **Core:** React 18
